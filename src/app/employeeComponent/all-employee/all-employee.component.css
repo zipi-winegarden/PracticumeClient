@@ -1,0 +1,78 @@
+.employee-list {
+    border: 6px solid #e6480e;
+    border-collapse: collapse;
+    margin-top: 20px;
+
+        width: 100%;
+   
+}
+
+.employee-list th, .employee-list td {
+    border: 1px solid #e6480e;
+    color: white;
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.employee-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+.employee-actions .btn ,.form-control {
+    background-color: #788a99;
+    color: #e6480e;
+    border: 2px solid #009dff;
+    padding: 10px 20px;
+    cursor: pointer;
+     display:inline; 
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+
+.employee-actions .btn:hover {
+    background-color: #c33e00;
+    color: #ddd;
+}
+
+  .employee-list th {
+    background-color: #084d7c;
+    color: #e6480e;
+  }
+  
+  .employee-list tbody tr:hover {
+    background-color: #62839c;
+  }
+  
+  .employee-list td button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .employee-list td button:hover {
+    text-decoration: underline;
+  }
+
+
+.modal-backdrop {
+    opacity: 0.5 !important;
+  }
+  
+
+.modal-content {
+    background-color: transparent;
+  }
+
+
+
+
+
+
+/* .search-box {
+    margin-left: auto;
+} */

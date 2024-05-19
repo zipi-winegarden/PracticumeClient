@@ -1,0 +1,41 @@
+<div class="employee-actions">
+    <div>
+        <button (click)="openAddEmployeeModal()" class="btn btn-primary">Add Employee</button>
+        <button (click)="exportToExcel()" class="btn btn-primary">Export to Excel</button>
+    </div>
+    <div class="search-box">
+        <input type="text" placeholder="Search..." (input)="filterEmployees($event)" class="form-control" />
+    </div>
+</div>
+
+  <table class="employee-list">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Id</th>
+        <th>Start Work Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of filteredEmployeeList">
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.idNumber}}</td>
+        <td>{{employee.entryWorkDate | date: 'short'}}</td>
+        <td><button (click)="openEditEmployeeModal(employee.id)" class="btn btn-secondary">
+            <i class="fas fa-pencil-alt"></i> 
+        </button>
+    </td>
+    <td>
+        <button (click)="delete(employee.id)" class="btn btn-secondary">
+            <i class="fas fa-trash"></i>
+        </button>
+    </td>
+        
+      </tr>
+    </tbody>
+  </table>
+  

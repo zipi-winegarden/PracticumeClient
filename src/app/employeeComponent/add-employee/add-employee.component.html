@@ -1,0 +1,98 @@
+<form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()" class="form-container">
+    <h2>Add Employee</h2>
+    <div class="form-group">
+        <label for="id-number">ID number</label>
+        <input id="id-number" type="text" formControlName="idNumber" class="form-control">
+        <div *ngIf="employeeForm.controls['idNumber'].errors" class="error-message">
+            <p *ngIf="employeeForm.controls['idNumber'].errors['required']">ID number is required!</p>
+            <p *ngIf="employeeForm.controls['idNumber'].errors['pattern']">ID number must contain exactly 9 numbers!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input id="first-name" type="text" formControlName="firstName" class="form-control">
+        <div *ngIf="employeeForm.controls['firstName'].errors" class="error-message">
+            <p *ngIf="employeeForm.controls['firstName'].errors['required']">First name is required!</p>
+            <p *ngIf="employeeForm.controls['firstName'].errors['invalidtext']">First name must contain only letters!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input id="last-name" type="text" formControlName="lastName" class="form-control">
+        <div *ngIf="employeeForm.controls['lastName'].errors" class="error-message">
+            <p *ngIf="employeeForm.controls['lastName'].errors['required']">Last name is required!</p>
+            <p *ngIf="employeeForm.controls['lastName'].errors['invalidtext']">Last name must contain only letters!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Gender</label>
+        <div class="gender-radio">
+            <input type="radio" formControlName="gender" [value]="1" id="male"> <label for="male">Male</label>
+            <input type="radio" formControlName="gender" [value]="2" id="female"> <label for="female">Female</label>
+        </div>
+        <div *ngIf="employeeForm.controls['gender'].errors" class="error-message">
+            <p *ngIf="employeeForm.controls['gender'].errors['required']">Gender is required!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="entry-work-day">Entry Work Day</label>
+        <input id="entry-work-day" type="date" formControlName="entryWorkDate" class="form-control">
+        <div *ngIf="employeeForm.controls['entryWorkDate'].errors" class="error-message">
+            <p *ngIf="employeeForm.controls['entryWorkDate'].errors['required']">Entry work day is required!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="birth-date">Birth Date</label>
+        <input id="birth-date" type="date" formControlName="birthDate" class="form-control">
+        <div *ngIf="employeeForm.controls['birthDate'].errors" class="error-message">
+            <p *ngIf="employeeForm.controls['birthDate'].errors['required']">Birth date is required!</p>
+            <p *ngIf="employeeForm.controls['birthDate'].errors['invalidBirthDate']">Birth date cannot be after today's date!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Employee Roles</label>
+        <div formArrayName="employeeRoles">
+            <div *ngFor="let role of EmployeeRolesArray.controls; let i = index" class="role-group">
+                <div [formGroupName]="i" class="role-container">
+                    <label for="role">Role</label>
+                    <select formControlName="roleId" (change)="onRoleChange(i, $event)" class="form-control">
+                        <ng-container *ngIf="isCurrentRole(i)">
+                            <option [value]="currentRoles[i].id" [selected]="true" disabled>{{ currentRoles[i].description}}</option>
+                        </ng-container>
+                        <option *ngFor="let role of availableRoles" [value]="role.id">{{ role.description }}</option>
+                    </select>
+                    <div *ngIf="employeeForm.get('employeeRoles.' + i + '.roleId')?.invalid" class="error-message">
+                        <p>Role is required!</p>
+                    </div>
+                    <label for="is-administrative">Is Administrative</label>
+                    <div class="admin-radio">
+                        <input type="radio" formControlName="isAdministrative" [value]="true" id="yes"> <label for="yes">Yes</label>
+                        <input type="radio" formControlName="isAdministrative" [value]="false" id="no"> <label for="no">No</label>
+                    </div>
+                    <div *ngIf="employeeForm.get('employeeRoles.' + i + '.isAdministrative')?.invalid" class="error-message">
+                        <p>Is Administrative is required!</p>
+                    </div>
+                    <label for="start-date">Start Date</label>
+                    <input type="date" formControlName="startDate" class="form-control">
+                    <div *ngIf="employeeForm.get('employeeRoles.' + i + '.startDate')?.errors?.['required'] || employeeForm.get('employeeRoles.' + i + '.startDate')?.errors?.['startBeforeEntryWorkDate']" class="error-message">
+                        <p>Start Date is required!</p>
+                        <p>Start date cannot be before entry work date!</p>
+                    </div>
+                    <button type="button" (click)="removeEmployeeRole(i)" class="btn btn-secondary">Remove Role</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="availableRoles.length === 0&& currentRoles.length>0" class="error-message">
+        <p>No more available roles</p>
+    </div>
+    <div *ngIf="isLastRoleEmpty()" class="error-message">
+        <p>Please fill the description field before adding a new role.</p>
+    </div>
+    <button type="button" (click)="addEmployeeRole()" [disabled]="availableRoles.length === 0 && currentRoles.length>0|| isLastRoleEmpty()" class="btn btn-primary">Add Role</button>
+    <div class="button-container">
+        <button type="submit" [disabled]="employeeForm.invalid" class="btn btn-primary">Submit</button>
+        <button type="button" (click)="cancelEdit()"  class="btn btn-secondary">Cancel</button>
+    </div>
+  </form>
+  

@@ -1,0 +1,27 @@
+body {
+    /* הוסף קישור לתמונת הרקע */
+    background-image: url("./assets/blue-1634110_1920.png");
+  
+    background-size: cover;
+    font-family: 'Comic Sans MS', sans-serif;
+}
+/* Add this CSS to your styles file */
+.modal-dialog {
+    z-index: 1050; /* Ensure the modal is above other elements */
+}
+
+
+/* Add this CSS to your styles file */
+.modal {
+    z-index: 1050 !important; /* Set a high z-index to ensure the modal is above other elements */
+}
+
+.modal-backdrop {
+    z-index: 1040 !important; /* Set the z-index of the backdrop lower than the modal */
+}
+
+/* .modal-content {
+    background-color: #fff; /* Set a white background color for the modal content */
+    /* pointer-events: auto;} /* Allow interaction within the modal */
+
+   

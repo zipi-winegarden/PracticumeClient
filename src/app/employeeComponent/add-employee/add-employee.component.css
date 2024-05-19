@@ -1,0 +1,129 @@
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #084d7c;
+    border: 5px solid #e6480e;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    color: #111f32;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #e6480e;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e6480e;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: #111f32;
+    margin-top: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+   
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.button-container button.save-btn {
+    background-color: #e57b55;
+    color: #fff;
+}
+
+.button-container button.cancel-btn {
+    background-color: #ccc;
+    color: #000;
+}
+
+.gender-radio {
+    display: flex;
+    align-items: center;
+}
+
+.gender-radio input[type="radio"] {
+    margin-right: 10px;
+}
+
+.admin-radio {
+    display: flex;
+    align-items: center;
+}
+
+.admin-radio input[type="radio"] {
+    margin-right: 10px;
+}
+
+.role-group {
+    background-color: #dfab99;
+    border: 1px solid #e6480e;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.role-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.role-container select,
+.role-container input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border:2px solid #d71212;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.role-container .error-message {
+    margin-top: 5px;
+    color: #009dff;
+}
+
+.role-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color:hsl(245, 93%, 16%);
+    color: white;
+}
+
+.role-container button:hover {
+    background-color: #e6480e;
+}
+
+.error-message p {
+    margin: 5px 0;
+}
